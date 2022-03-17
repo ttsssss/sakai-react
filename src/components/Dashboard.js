@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
@@ -19,11 +19,21 @@ const TableDemo = () => {
     // const toggle = () => {setShow(!show);}
     const [project_name, setProjectName] = useState("");
     const [description, setDescription] = useState("");
+    const [projects, setProjects] = useState([]);
     const history = useHistory();
+
+    useEffect(() => {
+        getProjects();
+    }, []);
+
+    const getProjects = async () => {
+        const response = await axios.get("http://localhost:5002/bugtracker_table");
+        setProjects(response.data);
+    };
 
     const saveProject = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5002/products', {
+        await axios.post('http://localhost:5002/bugtracker_table', {
             project_name: project_name,
             description: description
         });
@@ -69,18 +79,37 @@ const TableDemo = () => {
                                 </div>
                             </form>
                         </Modal>
-                        <DataTable
-                            // sortMode="single" sortField="representative.name"
-                            // value={}
-                            sortOrder={1}
-                            scrollable
-                            scrollHeight="400px"
-                            responsiveLayout="scroll"
-                        >
-                            <Column field="name" header="Project Name" style={{ minWidth: "200px" }}></Column>
-                            <Column field="description" header="Description" style={{ minWidth: "200px" }}></Column>
-                            <Column field="status" header="Status" style={{ minWidth: "200px" }}></Column>
-                        </DataTable>
+                        <div>
+            {/* // <Link to="/ticketlist"  className="col-12"> */}
+            <div>
+                {/* // className="card"></Link> */}
+                <DataTable
+                    // sortMode="single" sortField="representative.name"
+                    value={projects}
+                    sortOrder={1}
+                    scrollable
+                    scrollHeight="400px"
+                    responsiveLayout="scroll"
+                >
+                    <Column field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
+                    <Column field="description" header="Description" style={{ minWidth: "400px" }}></Column>
+                    <Column field="status" header="Status" style={{ minWidth: "150px" }}></Column>
+                    <Column field="date" header="Date" style={{ minWidth: '150px' }}></Column>
+
+                    {projects.map((project, index) => (
+                        <tr key={project.id}>
+                            <td>{index + 1}</td>
+                            <td>{project.project_name}</td>
+                            <td>{project.description}</td>
+                            <td>
+                                {/* <Link to={`/edit/${product.id}`} >Edit</Link>
+                                <button onClick={ () => deleteProjects(product.id) } >Delete</button> */}
+                            </td>
+                        </tr>
+                    ))}
+                </DataTable>
+            </div>
+        </div>
                     </div>
                 </div>
 

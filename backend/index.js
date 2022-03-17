@@ -14,6 +14,6 @@ try {
  
 app.use(cors());
 app.use(express.json());
-app.use('/products', productRoutes);
+app.use('/bugtracker_table', productRoutes);
  
-app.listen(5002, () => console.log('Server running at port 3306'));
+app.listen(5002, () => console.log('Server running at port 5002'));

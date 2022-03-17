@@ -12,7 +12,7 @@ const Ticketslists = () => {
     }, []);
 
     const getProjects = async () => {
-        const response = await axios.get("http://localhost:5002/products");
+        const response = await axios.get("http://localhost:5002/bugtracker_table");
         setProjects(response.data);
     };
 
@@ -28,21 +28,22 @@ const Ticketslists = () => {
                 {/* // className="card"></Link> */}
                 <DataTable
                     // sortMode="single" sortField="representative.name"
-                    // value={projects}
+                    value={projects}
                     sortOrder={1}
                     scrollable
                     scrollHeight="400px"
                     responsiveLayout="scroll"
                 >
-                    <Column value={projects.project_name} field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
+                    <Column field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
                     <Column field="description" header="Description" style={{ minWidth: "200px" }}></Column>
                     <Column field="status" header="Status" style={{ minWidth: "200px" }}></Column>
+                    <Column field="date" header="Date" style={{ minWidth: '200px' }}></Column>
 
-                    {projects.map((product, index) => (
-                        <tr key={product.id}>
+                    {projects.map((project, index) => (
+                        <tr key={project.id}>
                             <td>{index + 1}</td>
-                            <td>{product.project_name}</td>
-                            <td>{product.description}</td>
+                            <td>{project.project_name}</td>
+                            <td>{project.description}</td>
                             <td>
                                 {/* <Link to={`/edit/${product.id}`} >Edit</Link>
                                 <button onClick={ () => deleteProjects(product.id) } >Delete</button> */}
