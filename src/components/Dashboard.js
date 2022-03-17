@@ -8,7 +8,7 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Modal, ModalFooter, ModalHeader } from "react-bootstrap";
 import axios from "axios";
-// import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 // import ProjectsTable from "./Tables/ProjectsTable";
 // import TicketsPieChart from "./Tables/TicketsPieChart"
 // import API from
@@ -18,16 +18,16 @@ import axios from "axios";
 const TableDemo = () => {
     // const toggle = () => {setShow(!show);}
     const [project_name, setProjectName] = useState("");
-    // const [description, setDescription] = useState('');
-    // const history = useHistory();
+    const [description, setDescription] = useState("");
+    const history = useHistory();
 
     const saveProject = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:3001/bugtracker_table", {
+        await axios.post('http://localhost:5002/products', {
             project_name: project_name,
-            // description: description
+            description: description
         });
-        // history.push("/");
+        history.push("/");
     };
 
     const [show, setShow] = useState(false);
@@ -57,7 +57,9 @@ const TableDemo = () => {
                                                 </div>
                                             </div>
                                             <h5>Project Description</h5>
-                                            <InputTextarea placeholder="Enter project description" autoResize rows="3" cols="30" />
+                                            <InputTextarea 
+                                            value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Enter project description" autoResize rows="3" cols="30"
+                                            />
                                             <ModalFooter>
                                                 <Button label="Submit" className="p-button-rounded p-button-success mr-2 mb-2" />
                                                 <Button onClick={handleClose}>Close</Button>
@@ -69,12 +71,13 @@ const TableDemo = () => {
                         </Modal>
                         <DataTable
                             // sortMode="single" sortField="representative.name"
+                            // value={}
                             sortOrder={1}
                             scrollable
                             scrollHeight="400px"
                             responsiveLayout="scroll"
                         >
-                            <Column field="name" header="Name" style={{ minWidth: "200px" }}></Column>
+                            <Column field="name" header="Project Name" style={{ minWidth: "200px" }}></Column>
                             <Column field="description" header="Description" style={{ minWidth: "200px" }}></Column>
                             <Column field="status" header="Status" style={{ minWidth: "200px" }}></Column>
                         </DataTable>

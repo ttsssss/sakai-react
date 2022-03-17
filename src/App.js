@@ -29,6 +29,7 @@ import TreeDemo from './components/TreeDemo';
 import InvalidStateDemo from './components/InvalidStateDemo';
 import BlocksDemo from './components/BlocksDemo';
 import IconsDemo from './components/IconsDemo';
+import TicketLists from './components/TicketsLists'
 
 import Crud from './pages/Crud';
 import EmptyPage from './pages/EmptyPage';
@@ -161,7 +162,7 @@ const App = () => {
             label: 'Home',
             items: [
                 { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
-                { label: 'Tickets', icon: 'pi pi-fw pi-ticket', to: '/' },
+                { label: 'Tickets', icon: 'pi pi-fw pi-ticket', to: '/ticketlists' },
                 { label: 'Administration', icon: 'pi pi-fw pi-user', to: '/' }
             ]
         }  
@@ -228,6 +229,8 @@ const App = () => {
                     <Route path="/crud" component={Crud} />
                     <Route path="/empty" component={EmptyPage} />
                     <Route path="/documentation" component={Documentation} />
+                    <Route path="/ticketlists" component={TicketLists} />
+
                 </div>
 
                 <AppFooter layoutColorMode={layoutColorMode} />

@@ -16,4 +16,4 @@ app.use(cors());
 app.use(express.json());
 app.use('/products', productRoutes);
  
-app.listen(3001, () => console.log('Server running at port 3001'));
+app.listen(5002, () => console.log('Server running at port 3306'));
