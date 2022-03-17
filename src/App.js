@@ -163,7 +163,7 @@ const App = () => {
             items: [
                 { label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' },
                 { label: 'Tickets', icon: 'pi pi-fw pi-ticket', to: '/ticketlists' },
-                { label: 'Administration', icon: 'pi pi-fw pi-user', to: '/' }
+                // { label: 'Administration', icon: 'pi pi-fw pi-user', to: '/' }
             ]
         }  
     ];

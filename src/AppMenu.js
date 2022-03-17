@@ -4,6 +4,7 @@ import { CSSTransition } from 'react-transition-group';
 import classNames from 'classnames';
 import {Ripple} from "primereact/ripple";
 import { Badge } from 'primereact/badge';
+import { Button } from 'primereact/button';
 
 const AppSubmenu = (props) => {
 
@@ -109,10 +110,8 @@ export const AppMenu = (props) => {
     return (
         <div className="layout-menu-container">
             <AppSubmenu items={props.model} className="layout-menu"  onMenuItemClick={props.onMenuItemClick} root={true} role="menu" />
-            <a href="https://www.primefaces.org/primeblocks-react" className="block mt-3">
-                <img alt="primeblocks" className="w-full"
-                     src={props.layoutColorMode === 'light' ? 'assets/layout/images/banner-primeblocks.png' : 'assets/layout/images/banner-primeblocks-dark.png'}/>
-            </a>
+            <Button label="Logout" className="p-button-rounded p-button-secondary mr-2 mb-2 logout-button" />
+
         </div>
     );
 }
