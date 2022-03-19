@@ -8,7 +8,8 @@ import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import { Modal, ModalFooter, ModalHeader } from "react-bootstrap";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from "react-router-dom";
+// import { Media } from "react-bootstrap/Media"
 // import ProjectsTable from "./Tables/ProjectsTable";
 // import TicketsPieChart from "./Tables/TicketsPieChart"
 // import API from
@@ -33,9 +34,9 @@ const TableDemo = () => {
 
     const saveProject = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5002/bugtracker_table', {
+        await axios.post("http://localhost:5002/bugtracker_table", {
             project_name: project_name,
-            description: description
+            description: description,
         });
         history.push("/");
     };
@@ -67,9 +68,7 @@ const TableDemo = () => {
                                                 </div>
                                             </div>
                                             <h5>Project Description</h5>
-                                            <InputTextarea 
-                                            value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Enter project description" autoResize rows="3" cols="30"
-                                            />
+                                            <InputTextarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Enter project description" autoResize rows="3" cols="30" />
                                             <ModalFooter>
                                                 <Button label="Submit" className="p-button-rounded p-button-success mr-2 mb-2" />
                                                 <Button onClick={handleClose}>Close</Button>
@@ -79,37 +78,36 @@ const TableDemo = () => {
                                 </div>
                             </form>
                         </Modal>
-                        <div>
-            {/* // <Link to="/ticketlist"  className="col-12"> */}
-            <div>
-                {/* // className="card"></Link> */}
-                <DataTable
-                    // sortMode="single" sortField="representative.name"
-                    value={projects}
-                    sortOrder={1}
-                    scrollable
-                    scrollHeight="400px"
-                    responsiveLayout="scroll"
-                >
-                    <Column field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
-                    <Column field="description" header="Description" style={{ minWidth: "400px" }}></Column>
-                    <Column field="status" header="Status" style={{ minWidth: "150px" }}></Column>
-                    <Column field="date" header="Date" style={{ minWidth: '150px' }}></Column>
 
-                    {projects.map((project, index) => (
-                        <tr key={project.id}>
-                            <td>{index + 1}</td>
-                            <td>{project.project_name}</td>
-                            <td>{project.description}</td>
-                            <td>
-                                {/* <Link to={`/edit/${product.id}`} >Edit</Link>
-                                <button onClick={ () => deleteProjects(product.id) } >Delete</button> */}
-                            </td>
-                        </tr>
-                    ))}
-                </DataTable>
-            </div>
-        </div>
+                        {/* // <Link to="/ticketlist"  className="col-12"> */}
+                        <div>
+                            {/* // className="card"></Link> */}
+                            <DataTable
+                                // sortMode="single" sortField="representative.name"
+                                value={projects}
+                                sortOrder={1}
+                                scrollable
+                                scrollHeight="400px"
+                                responsiveLayout="scroll"
+                            >
+                                <Column field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
+                                {/* <Column field="ticket_title" header="Ticket Title" style={{ minWidth: "200px" }}></Column> */}
+                                <Column field="description" header="Description" style={{ minWidth: "350px" }}></Column>
+                                <Column field="status" header="Status" style={{ minWidth: "200" }}></Column>
+                                <Column field="createdAt" header="Date" style={{ minWidth: "200px" }}></Column>
+
+                                {projects.map((project, index) => (
+                                    <tr key={project.id}>
+                                        <td>{index + 1}</td>
+                                        <td>
+                                            <Link to={`/projects/${project.id}`}>{project.project_name}</Link>
+                                        </td>
+                                        <td>{project.description}</td>
+                                        <td>{project.createdAt}</td>\{" "}
+                                    </tr>
+                                ))}
+                            </DataTable>
+                        </div>
                     </div>
                 </div>
 

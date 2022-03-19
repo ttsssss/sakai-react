@@ -30,6 +30,7 @@ import InvalidStateDemo from './components/InvalidStateDemo';
 import BlocksDemo from './components/BlocksDemo';
 import IconsDemo from './components/IconsDemo';
 import TicketLists from './components/TicketsLists'
+import Projects from './components/Projects'
 
 import Crud from './pages/Crud';
 import EmptyPage from './pages/EmptyPage';
@@ -230,6 +231,8 @@ const App = () => {
                     <Route path="/empty" component={EmptyPage} />
                     <Route path="/documentation" component={Documentation} />
                     <Route path="/ticketlists" component={TicketLists} />
+                    <Route path="/projects" component={Projects} />
+
 
                 </div>
 

@@ -9,6 +9,9 @@ const Project = db.define('bugtracker_table',{
     },
     description:{
         type: DataTypes.STRING
+    }, 
+    createdAt:{
+        type: DataTypes.DATE
     }
 },{
     freezeTableName: true
