@@ -4,6 +4,7 @@ import { DataTable } from "primereact/datatable";
 import { Row, Col } from "react-bootstrap";
 
 const Projects = () => {
+    
     return (
         <>
             <div className="grid table-demo">
@@ -17,6 +18,7 @@ const Projects = () => {
                                 scrollable
                                 scrollHeight="400px"
                                 responsiveLayout="scroll"
+
                             >
                                 <Column field="ticket_title" header="Ticket Title" style={{ minWidth: "200px" }}></Column>
                                 <Column field="description" header="Description" style={{ minWidth: "350px" }}></Column>

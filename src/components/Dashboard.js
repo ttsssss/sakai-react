@@ -22,6 +22,14 @@ const TableDemo = () => {
     const [description, setDescription] = useState("");
     const [projects, setProjects] = useState([]);
     const history = useHistory();
+    
+    const projectsToShow = projects.map(project => {
+        return {
+            ...project,
+            project_name:  <Link to={`/projects/${project.id}`}>{project.project_name}</Link>
+        }    
+    })
+    
 
     useEffect(() => {
         getProjects();
@@ -84,11 +92,12 @@ const TableDemo = () => {
                             {/* // className="card"></Link> */}
                             <DataTable
                                 // sortMode="single" sortField="representative.name"
-                                value={projects}
+                                value={projectsToShow}
                                 sortOrder={1}
                                 scrollable
                                 scrollHeight="400px"
                                 responsiveLayout="scroll"
+
                             >
                                 <Column field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
                                 {/* <Column field="ticket_title" header="Ticket Title" style={{ minWidth: "200px" }}></Column> */}
