@@ -1,14 +1,13 @@
 .npbutton {
     display: flex;
-    margin-left: 90%;
+    margin-left: 85%;
     margin-top: -40px;
 }
 
 .modal {
     position: absolute;
-    left: 50%;
-    top: 40%;
-    // transform: translate(-50%, -50%);
+    left: 32.5%;
+    top: 32.5%;
     width: 85%;
   }
 
@@ -17,3 +16,19 @@
     margin-top: 40px;
     margin-left: 75px;
 }
+
+.x-button {
+    margin-left: 85%;
+    margin-top: 50px !important;
+
+}
+
+.success {
+    margin-left: 35%;
+    width: 20% !important;
+    margin-top: 17.5px;
+}
+
+// .p-dropdown{
+// display: inline:flex
+// }

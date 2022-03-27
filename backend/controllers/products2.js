@@ -1,17 +1,17 @@
-import Project from "../models/productModel.js";
+import Project2 from "../models/productModel2.js";
  
-export const getAllProjects = async (req, res) => {
+export const getAllTickets = async (req, res) => {
     try {
-        const projects = await Project.findAll();
+        const projects = await Project2.findAll();
         res.json(projects);
     } catch (error) {
         res.json({ message: error.message });
     }  
 }
  
-export const getProjectsById = async (req, res) => {
+export const getTicketsById = async (req, res) => {
     try {
-        const project = await Project.findAll({
+        const project = await Project2.findAll({
             where: {
                 id: req.params.id
             }
@@ -22,9 +22,9 @@ export const getProjectsById = async (req, res) => {
     }  
 }
  
-export const createProject = async (req, res) => {
+export const createTicket = async (req, res) => {
     try {
-        await Project.create(req.body);
+        await Project2.create(req.body);
         res.json({
             "message": "Project Created"
         });
@@ -33,9 +33,9 @@ export const createProject = async (req, res) => {
     }  
 }
  
-export const updateProject = async (req, res) => {
+export const updateTicket = async (req, res) => {
     try {
-        await Project.update(req.body, {
+        await Project2.update(req.body, {
             where: {
                 id: req.params.id
             }
@@ -48,9 +48,9 @@ export const updateProject = async (req, res) => {
     }  
 }
  
-export const deleteProject = async (req, res) => {
+export const deleteTicket = async (req, res) => {
     try {
-        await Project.destroy({
+        await Project2.destroy({
             where: {
                 id: req.params.id
             }

@@ -22,14 +22,13 @@ const TableDemo = () => {
     const [description, setDescription] = useState("");
     const [projects, setProjects] = useState([]);
     const history = useHistory();
-    
-    const projectsToShow = projects.map(project => {
+
+    const projectsToShow = projects.map((project) => {
         return {
             ...project,
-            project_name:  <Link to={`/projects/${project.id}`}>{project.project_name}</Link>
-        }    
-    })
-    
+            project_name: <Link to={`/projects/${project.id}`}>{project.project_name}</Link>,
+        };
+    });
 
     useEffect(() => {
         getProjects();
@@ -58,7 +57,6 @@ const TableDemo = () => {
                 <div className="col-12">
                     <div className="card">
                         <h5>Projects</h5>
-
                         <div>
                             <Button label="New Project" className="p-button-rounded mr-2 mb-2 npbutton" onClick={handleShow} />
                         </div>
@@ -67,6 +65,8 @@ const TableDemo = () => {
                                 <div className="grid p-fluid">
                                     <div className="col-12 md:col-6">
                                         <div className="card">
+                                            <Button icon="pi pi-times" className="p-button-rounded p-button-danger p-button-text mr-2 mb-2 x-button" onClick={handleClose}></Button>
+
                                             <ModalHeader>
                                                 <h5>Projects</h5>
                                             </ModalHeader>
@@ -78,8 +78,8 @@ const TableDemo = () => {
                                             <h5>Project Description</h5>
                                             <InputTextarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Enter project description" autoResize rows="3" cols="30" />
                                             <ModalFooter>
-                                                <Button label="Submit" className="p-button-rounded p-button-success mr-2 mb-2" />
-                                                <Button onClick={handleClose}>Close</Button>
+                                                <Button label="Submit" className="p-button-rounded p-button-success mr-2 mb-2 success" />
+                                                {/* <Button onClick={handleClose}>Close</Button> */}
                                             </ModalFooter>
                                         </div>
                                     </div>
@@ -97,22 +97,16 @@ const TableDemo = () => {
                                 scrollable
                                 scrollHeight="400px"
                                 responsiveLayout="scroll"
-
                             >
                                 <Column field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
-                                {/* <Column field="ticket_title" header="Ticket Title" style={{ minWidth: "200px" }}></Column> */}
                                 <Column field="description" header="Description" style={{ minWidth: "350px" }}></Column>
-                                <Column field="status" header="Status" style={{ minWidth: "200" }}></Column>
-                                <Column field="createdAt" header="Date" style={{ minWidth: "200px" }}></Column>
+                                <Column field="createdAt" header="Created On" style={{ minWidth: "150px" }}></Column>
 
                                 {projects.map((project, index) => (
                                     <tr key={project.id}>
                                         <td>{index + 1}</td>
-                                        <td>
-                                            <Link to={`/projects/${project.id}`}>{project.project_name}</Link>
-                                        </td>
                                         <td>{project.description}</td>
-                                        <td>{project.createdAt}</td>\{" "}
+                                        <td>{project.createdAt}</td>
                                     </tr>
                                 ))}
                             </DataTable>
