@@ -1,12 +1,13 @@
 import React  from 'react';
 import { Link } from 'react-router-dom';
+// import insect from assets/layout/images
 
 export const AppTopbar = (props) => {
 
     return (
         <div className="layout-topbar">
             <Link to="/" className="layout-topbar-logo">
-                <img src={props.layoutColorMode === 'light' ? 'assets/layout/images/logo-dark.svg' : 'assets/layout/images/logo-white.svg'} alt="logo"/>
+                <img src={'assets/layout/images/insect.jpg'} alt="logo"/>
                 <span>Bug Tracker</span>
             </Link>
 

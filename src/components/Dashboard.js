@@ -6,9 +6,9 @@ import { Button } from "primereact/button";
 import { Chart } from "primereact/chart";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
-import { Modal, ModalFooter, ModalHeader } from "react-bootstrap";
 import axios from "axios";
 import { useHistory, Link } from "react-router-dom";
+import { Dialog } from "primereact/dialog";
 // import { Media } from "react-bootstrap/Media"
 // import ProjectsTable from "./Tables/ProjectsTable";
 // import TicketsPieChart from "./Tables/TicketsPieChart"
@@ -17,7 +17,6 @@ import { useHistory, Link } from "react-router-dom";
 //project table
 //eslint-disable no-unused-vars
 const TableDemo = () => {
-    // const toggle = () => {setShow(!show);}
     const [project_name, setProjectName] = useState("");
     const [description, setDescription] = useState("");
     const [projects, setProjects] = useState([]);
@@ -34,6 +33,8 @@ const TableDemo = () => {
         getProjects();
     }, []);
 
+    const [displayResponsive, setDisplayResponsive] = useState(false);
+
     const getProjects = async () => {
         const response = await axios.get("http://localhost:5002/bugtracker_table");
         setProjects(response.data);
@@ -48,9 +49,27 @@ const TableDemo = () => {
         history.push("/");
     };
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const dialogFuncMap = {
+        displayResponsive: setDisplayResponsive,
+    };
+
+    const onClick = (name) => {
+        dialogFuncMap[`${name}`](true);
+    };
+
+    const onHide = (name) => {
+        dialogFuncMap[`${name}`](false);
+    };
+
+    const renderFooter = (name) => {
+        return (
+            <div>
+                {" "}
+                <Button onClick={saveProject} type="submit" label="Submit" className="p-button-rounded p-button-success mr-2 mb-2 success" />
+            </div>
+        );
+    };
+
     return (
         <>
             <div className="grid table-demo">
@@ -58,34 +77,16 @@ const TableDemo = () => {
                     <div className="card">
                         <h5>Projects</h5>
                         <div>
-                            <Button label="New Project" className="p-button-rounded mr-2 mb-2 npbutton" onClick={handleShow} />
+                            <Button className="p-button-rounded mr-2 mb-2 npbutton" label="New Ticket" onClick={() => onClick("displayResponsive")} />
                         </div>
-                        <Modal className="modal" show={show} onHide={handleClose}>
+                        <Dialog className="dialogModal" header="Create Ticket" visible={displayResponsive} onHide={() => onHide("displayResponsive")} breakpoints={{ "960px": "75vw" }} style={{ width: "35vw" }} footer={renderFooter("displayResponsive")}>
                             <form onSubmit={saveProject}>
-                                <div className="grid p-fluid">
-                                    <div className="col-12 md:col-6">
-                                        <div className="card">
-                                            <Button icon="pi pi-times" className="p-button-rounded p-button-danger p-button-text mr-2 mb-2 x-button" onClick={handleClose}></Button>
-
-                                            <ModalHeader>
-                                                <h5>Projects</h5>
-                                            </ModalHeader>
-                                            <div className="grid formgrid">
-                                                <div className="col-12 mb-2 lg:col-4 lg:mb-0">
-                                                    <InputText value={project_name} onChange={(e) => setProjectName(e.target.value)} type="text" placeholder="Enter project name"></InputText>
-                                                </div>
-                                            </div>
-                                            <h5>Project Description</h5>
-                                            <InputTextarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Enter project description" autoResize rows="3" cols="30" />
-                                            <ModalFooter>
-                                                <Button label="Submit" className="p-button-rounded p-button-success mr-2 mb-2 success" />
-                                                {/* <Button onClick={handleClose}>Close</Button> */}
-                                            </ModalFooter>
-                                        </div>
-                                    </div>
-                                </div>
+                                <h5>Project Name</h5>
+                                <InputText value={project_name} onChange={(e) => setProjectName(e.target.value)} type="text" placeholder="Enter project name"></InputText>
+                                <h5>Project Description</h5>
+                                <InputTextarea value={description} onChange={(e) => setDescription(e.target.value)} type="text" placeholder="Enter project description" autoResize rows="4" cols="40" />
                             </form>
-                        </Modal>
+                        </Dialog>
 
                         {/* // <Link to="/ticketlist"  className="col-12"> */}
                         <div>

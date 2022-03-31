@@ -8,6 +8,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 // import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
+// import { useHistory } from "react-router-dom";
 
 import axios from "axios";
 
@@ -23,7 +24,7 @@ const Projectz = () => {
 
     //part of modal
     const [displayResponsive, setDisplayResponsive] = useState(false);
-    const [position, setPosition] = useState("center");
+    // const [position, setPosition] = useState("center");
 
     useEffect(() => {
         getProjects();
@@ -44,6 +45,7 @@ const Projectz = () => {
             priority_menu: priority_menu,
             status_menu: status_menu,
         });
+        // history.push("/projects/${project.id}");
     };
 
     const dropdownValues1 = [{ value: "Issue" }, { value: "Bug" }, { value: "Error" }, { value: "Other" }];
@@ -56,12 +58,8 @@ const Projectz = () => {
         displayResponsive: setDisplayResponsive,
     };
 
-    const onClick = (name, position) => {
+    const onClick = (name) => {
         dialogFuncMap[`${name}`](true);
-
-        if (position) {
-            setPosition(position);
-        }
     };
 
     const onHide = (name) => {
@@ -71,7 +69,8 @@ const Projectz = () => {
     const renderFooter = (name) => {
         return (
             <div>
-                <Button label="Submit" className="p-button-rounded p-button-success mr-2 mb-2 success" />
+                {" "}
+                <Button onClick={saveProject} type="submit" label="Submit" className="p-button-rounded p-button-success mr-2 mb-2 success" />
             </div>
         );
     };
@@ -90,19 +89,21 @@ const Projectz = () => {
                             {/* <Button label="New Ticket" className="p-button-rounded mr-2 mb-2 npbutton" onClick={handleShow} /> */}
                             <Button className="p-button-rounded mr-2 mb-2 npbutton" label="New Ticket" onClick={() => onClick("displayResponsive")} />
                         </div>
-                        <Dialog className="dialogModal" header="Create Ticket" visible={displayResponsive} onHide={() => onHide("displayResponsive")} breakpoints={{ "960px": "75vw" }} style={{ width: "30vw" }} footer={renderFooter("displayResponsive")} Submit={ saveProject }>
-                            <h5>Ticket Name</h5>
-                            <InputText value={ticket_title} onChange={(e) => setTicketTitle(e.target.value)} type="text" placeholder="Enter ticket name"></InputText>
-                            <h5>Ticket Description</h5>
-                            <InputTextarea value={ticket_description} onChange={(e) => setTicketDescription(e.target.value)} type="text" placeholder="Enter ticket description" autoResize rows="3" cols="30" />
-                            {/* <h5>Time Estimate (Hours)</h5> */}
-                            {/* <InputNumber value={time_takes} onValueChange={(e) => setTimeTakes(e.value)} showButtons mode="decimal"></InputNumber> */}
-                            <h5>Type</h5>
-                            <Dropdown value={type_menu} onChange={(e) => setTypeMenu(e.value)} options={dropdownValues1} optionLabel="value" placeholder="Select" />
-                            <h5>Priority</h5>
-                            <Dropdown value={priority_menu} onChange={(e) => setPriorityMenu(e.value)} options={dropdownValues2} optionLabel="value" placeholder="Select" />
-                            <h5>Status</h5>
-                            <Dropdown value={status_menu} onChange={(e) => setStatusMenu(e.value)} options={dropdownValues3} optionLabel="value" placeholder="Select" />
+                            <Dialog  className="dialogModal" header="Create Ticket" visible={displayResponsive} onHide={() => onHide("displayResponsive")} breakpoints={{ "960px": "75vw" }} style={{ width: "30vw" }} footer={renderFooter("displayResponsive")}>
+                            <form onSubmit={saveProject}>                              
+                                <h5>Ticket Name</h5>
+                                <InputText value={ticket_title} onChange={(e) => setTicketTitle(e.target.value)} type="text" placeholder="Enter ticket name"></InputText>
+                                <h5>Ticket Description</h5>
+                                <InputTextarea value={ticket_description} onChange={(e) => setTicketDescription(e.target.value)} type="text" placeholder="Enter ticket description" autoResize rows="4" cols="40" />
+                                {/* <h5>Time Estimate (Hours)</h5> */}
+                                {/* <InputNumber value={time_takes} onValueChange={(e) => setTimeTakes(e.value)} showButtons mode="decimal"></InputNumber> */}
+                                <h5>Type</h5>
+                                <Dropdown value={type_menu} onChange={(e) => setTypeMenu(e.value)} options={dropdownValues1} optionLabel="value" placeholder="Select" />
+                                <h5>Priority</h5>
+                                <Dropdown value={priority_menu} onChange={(e) => setPriorityMenu(e.value)} options={dropdownValues2} optionLabel="value" placeholder="Select" />
+                                <h5>Status</h5>
+                                <Dropdown value={status_menu} onChange={(e) => setStatusMenu(e.value)} options={dropdownValues3} optionLabel="value" placeholder="Select" />
+                            </form>
                         </Dialog>
                         <div>
                             <DataTable
