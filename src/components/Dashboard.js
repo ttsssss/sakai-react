@@ -75,7 +75,7 @@ const TableDemo = () => {
             <div className="grid table-demo">
                 <div className="col-12">
                     <div className="card">
-                        <h5>Projects</h5>
+                       <h5>Projects</h5>
                         <div>
                             <Button className="p-button-rounded mr-2 mb-2 npbutton" label="New Ticket" onClick={() => onClick("displayResponsive")} />
                         </div>
