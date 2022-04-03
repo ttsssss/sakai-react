@@ -89,20 +89,28 @@ const Projectz = () => {
                             {/* <Button label="New Ticket" className="p-button-rounded mr-2 mb-2 npbutton" onClick={handleShow} /> */}
                             <Button className="p-button-rounded mr-2 mb-2 npbutton" label="New Ticket" onClick={() => onClick("displayResponsive")} />
                         </div>
-                            <Dialog  className="dialogModal" header="Create Ticket" visible={displayResponsive} onHide={() => onHide("displayResponsive")} breakpoints={{ "960px": "75vw" }} style={{ width: "30vw" }} footer={renderFooter("displayResponsive")}>
-                            <form onSubmit={saveProject}>                              
+                        <Dialog className="dialogModal" header="Create Ticket" visible={displayResponsive} onHide={() => onHide("displayResponsive")} breakpoints={{ "960px": "75vw" }} style={{ width: "35vw" }} footer={renderFooter("displayResponsive")}>
+                            <form onSubmit={saveProject}>
                                 <h5>Ticket Name</h5>
                                 <InputText value={ticket_title} onChange={(e) => setTicketTitle(e.target.value)} type="text" placeholder="Enter ticket name"></InputText>
                                 <h5>Ticket Description</h5>
                                 <InputTextarea value={ticket_description} onChange={(e) => setTicketDescription(e.target.value)} type="text" placeholder="Enter ticket description" autoResize rows="4" cols="40" />
                                 {/* <h5>Time Estimate (Hours)</h5> */}
                                 {/* <InputNumber value={time_takes} onValueChange={(e) => setTimeTakes(e.value)} showButtons mode="decimal"></InputNumber> */}
-                                <h5>Type</h5>
-                                <Dropdown value={type_menu} onChange={(e) => setTypeMenu(e.value)} options={dropdownValues1} optionLabel="value" placeholder="Select" />
-                                <h5>Priority</h5>
-                                <Dropdown value={priority_menu} onChange={(e) => setPriorityMenu(e.value)} options={dropdownValues2} optionLabel="value" placeholder="Select" />
-                                <h5>Status</h5>
-                                <Dropdown value={status_menu} onChange={(e) => setStatusMenu(e.value)} options={dropdownValues3} optionLabel="value" placeholder="Select" />
+                                <div className="dpcontainer">
+                                    <div>
+                                        <h5>Type</h5>
+                                        <Dropdown value={type_menu} onChange={(e) => setTypeMenu(e.value)} options={dropdownValues1} optionLabel="value" placeholder="Select" />
+                                    </div>
+                                    <div>
+                                        <h5>Priority</h5>
+                                        <Dropdown value={priority_menu} onChange={(e) => setPriorityMenu(e.value)} options={dropdownValues2} optionLabel="value" placeholder="Select" />
+                                    </div>
+                                    <div>
+                                        <h5>Status</h5>
+                                        <Dropdown value={status_menu} onChange={(e) => setStatusMenu(e.value)} options={dropdownValues3} optionLabel="value" placeholder="Select" />
+                                    </div>
+                                </div>
                             </form>
                         </Dialog>
                         <div>

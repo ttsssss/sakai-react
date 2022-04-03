@@ -1,13 +1,12 @@
 import React  from 'react';
 import { Link } from 'react-router-dom';
-// import insect from assets/layout/images
-
+// import insect from "assets/layout/images/insect.jpg"
 export const AppTopbar = (props) => {
 
     return (
         <div className="layout-topbar">
             <Link to="/" className="layout-topbar-logo">
-                <img src={'assets/layout/images/insect.jpg'} alt="logo"/>
+                <img src={'insect'} alt="logo"/>
                 <span>Bug Tracker</span>
             </Link>
 
