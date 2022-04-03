@@ -1,13 +1,14 @@
 import React  from 'react';
 import { Link } from 'react-router-dom';
-// import insect from "assets/layout/images/insect.jpg"
+import silosect from "./assets/layout/images/silosect.png"
+
 export const AppTopbar = (props) => {
 
     return (
         <div className="layout-topbar">
             <Link to="/" className="layout-topbar-logo">
-                <img src={'insect'} alt="logo"/>
-                <span>Bug Tracker</span>
+                <img src={silosect} alt="logo"/>
+                <b><span>Bug Tracker</span></b>
             </Link>
 
             <button type="button" className="p-link  layout-menu-button layout-topbar-button" onClick={props.onToggleMenuClick}>
