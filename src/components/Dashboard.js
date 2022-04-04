@@ -70,12 +70,15 @@ const TableDemo = () => {
         );
     };
 
+    // const paginatorLeft = <Button type="button" icon="pi pi-refresh" className="p-button-text" />;
+    // const paginatorRight = <Button type="button" icon="pi pi-cloud" className="p-button-text" />;
+
     return (
         <>
             <div className="grid table-demo">
                 <div className="col-12">
                     <div className="card">
-                       <h5>Projects</h5>
+                        <h5>Projects</h5>
                         <div>
                             <Button className="p-button-rounded mr-2 mb-2 npbutton" label="New Ticket" onClick={() => onClick("displayResponsive")} />
                         </div>
@@ -98,7 +101,14 @@ const TableDemo = () => {
                                 scrollable
                                 scrollHeight="400px"
                                 responsiveLayout="scroll"
+                                paginator
+                                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+                                rows={5}
+                                rowsPerPageOptions={[5, 10, 25]}
                             >
+                                {/* // paginatorLeft={paginatorLeft} paginatorRight={paginatorRight}> */}
+
                                 <Column field="project_name" header="Project Name" style={{ minWidth: "200px" }}></Column>
                                 <Column field="description" header="Description" style={{ minWidth: "350px" }}></Column>
                                 <Column field="createdAt" header="Created On" style={{ minWidth: "150px" }}></Column>

@@ -121,8 +121,13 @@ const Projectz = () => {
                                 scrollable
                                 scrollHeight="400px"
                                 responsiveLayout="scroll"
+                                paginator
+                                paginatorTemplate="CurrentPageReport FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink RowsPerPageDropdown"
+                                currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+                                rows={5}
+                                rowsPerPageOptions={[5, 10, 25]}
                             >
-                                <Column field="ticket_title" header="Ticket Title" style={{ minWidth: "200px" }}></Column>
+                                <Column field="ticket_title" header="Ticket Name" style={{ minWidth: "200px" }}></Column>
                                 <Column field="description" header="Description" style={{ minWidth: "350px" }}></Column>
                                 <Column field="status" header="Status" style={{ minWidth: "200" }}></Column>
                                 <Column field="createdAt" header="Date" style={{ minWidth: "200px" }}></Column>
