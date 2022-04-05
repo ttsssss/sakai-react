@@ -1,7 +1,7 @@
 {
     "name": "sakai-react",
     "version": "7.0.3-SNAPSHOT",
-    "homepage": "https://ttsssss.github.io/sakai-react/my-app",
+    "homepage": ".",
     "private": false,
     "repository": {
         "type": "git",
