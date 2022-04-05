@@ -8,6 +8,7 @@ import { InputTextarea } from "primereact/inputtextarea";
 // import { InputNumber } from "primereact/inputnumber";
 import { Dropdown } from "primereact/dropdown";
 import { Dialog } from "primereact/dialog";
+import { Card } from 'primereact/card';
 // import { useHistory } from "react-router-dom";
 
 import axios from "axios";
@@ -116,7 +117,7 @@ const Projectz = () => {
                         <div>
                             <DataTable
                                 // sortMode="single" sortField="representative.name"
-
+                                editMode="row"
                                 sortOrder={1}
                                 scrollable
                                 scrollHeight="400px"
@@ -142,7 +143,7 @@ const Projectz = () => {
                     <div className="card">
                         <h5>Ticket Info</h5>
                         <div>
-                            <DataTable
+                            <Card
                             // value={projects}
                             // sortMode="single" sortField="representative.name"
                             // sortOrder={1}
@@ -161,7 +162,7 @@ const Projectz = () => {
                                         <td>{project.status_menu}</td>
                                     </tr>
                                 ))}
-                            </DataTable>
+                            </Card>
                         </div>
                     </div>
                 </div>

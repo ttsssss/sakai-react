@@ -96,6 +96,7 @@ const TableDemo = () => {
                             {/* // className="card"></Link> */}
                             <DataTable
                                 // sortMode="single" sortField="representative.name"
+                                editMode="row"
                                 value={projectsToShow}
                                 sortOrder={1}
                                 scrollable
