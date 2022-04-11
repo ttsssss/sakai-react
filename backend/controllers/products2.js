@@ -13,7 +13,7 @@ export const getTicketsById = async (req, res) => {
     try {
         const project = await Project2.findAll({
             where: {
-                id: req.params.id
+                ticket_id: req.params.ticket_id
             }
         });
         res.json(project[0]);
@@ -37,7 +37,7 @@ export const updateTicket = async (req, res) => {
     try {
         await Project2.update(req.body, {
             where: {
-                id: req.params.id
+                ticket_id: req.params.ticket_id
             }
         });
         res.json({
@@ -52,7 +52,7 @@ export const deleteTicket = async (req, res) => {
     try {
         await Project2.destroy({
             where: {
-                id: req.params.id
+                ticket_id: req.params.ticket_id
             }
         });
         res.json({

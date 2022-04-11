@@ -3,7 +3,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 // import ButtonDemo from './ButtonDemo';
-import { Chart } from "primereact/chart";
+// import { Chart } from "primereact/chart";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
@@ -126,7 +126,7 @@ const TableDemo = () => {
                     </div>
                 </div>
 
-                <div className="grid p-fluid">
+                {/* <div className="grid p-fluid">
                     <div className="col-12 lg:col-6">
                         <div className="card flex flex-column align-items-center">
                             <h5>Tickets by Type</h5>
@@ -152,7 +152,8 @@ const TableDemo = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+                */}
+            </div> 
         </>
     );
 };

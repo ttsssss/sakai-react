@@ -152,7 +152,7 @@ const Projectz = () => {
                             // responsiveLayout="scroll"
                             >
                                 {projects.map((project, index) => (
-                                    <tr key={project.id}>
+                                    <tr key={project.project_id}>
                                         <td>{index + 1}</td>
                                         <td>{project.ticket_title}</td>
                                         <td>{project.ticket_description}</td>
