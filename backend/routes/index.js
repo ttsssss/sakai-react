@@ -7,10 +7,10 @@ import { getAllProjects, createProject, getProjectsById, updateProject, deletePr
 const router = express.Router();
 
 router.get("/", getAllProjects);
-router.get("/:id", getProjectsById);
+router.get("/:project_id", getProjectsById);
 router.post("/", createProject);
-router.patch("/:id", updateProject);
-router.delete("/:id", deleteProject);
+router.patch("/:project_id", updateProject);
+router.delete("/:project_id", deleteProject);
 
 // router.get("/projects", getAllTickets);
 // router.get("/projects/:id", getTicketsById);

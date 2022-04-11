@@ -4,6 +4,12 @@ import db from "../config/database.js";
 const { DataTypes } = Sequelize;
  
 const Project2 = db.define('ticket_table',{
+
+    ticket_id: {
+        type: Sequelize.INTEGER(11),
+        allowNull: false,
+        primaryKey: true,
+    },
     ticket_title:{
         type: DataTypes.STRING
     },

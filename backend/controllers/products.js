@@ -13,7 +13,7 @@ export const getProjectsById = async (req, res) => {
     try {
         const project = await Project.findAll({
             where: {
-                id: req.params.id
+                project_id: req.params.project_id
             }
         });
         res.json(project[0]);
@@ -37,7 +37,7 @@ export const updateProject = async (req, res) => {
     try {
         await Project.update(req.body, {
             where: {
-                id: req.params.id
+                project_id: req.params.project_id
             }
         });
         res.json({
@@ -52,7 +52,7 @@ export const deleteProject = async (req, res) => {
     try {
         await Project.destroy({
             where: {
-                id: req.params.id
+                project_id: req.params.project_id
             }
         });
         res.json({

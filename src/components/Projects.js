@@ -91,7 +91,7 @@ const Projectz = () => {
                             <Button className="p-button-rounded mr-2 mb-2 npbutton" label="New Ticket" onClick={() => onClick("displayResponsive")} />
                         </div>
                         <Dialog className="dialogModal" header="Create Ticket" visible={displayResponsive} onHide={() => onHide("displayResponsive")} breakpoints={{ "960px": "75vw" }} style={{ width: "35vw" }} footer={renderFooter("displayResponsive")}>
-                            <form onSubmit={saveProject}>
+                            <form>
                                 <h5>Ticket Name</h5>
                                 <InputText value={ticket_title} onChange={(e) => setTicketTitle(e.target.value)} type="text" placeholder="Enter ticket name"></InputText>
                                 <h5>Ticket Description</h5>

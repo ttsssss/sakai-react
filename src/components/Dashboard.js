@@ -7,7 +7,7 @@ import { Chart } from "primereact/chart";
 import { InputText } from "primereact/inputtext";
 import { InputTextarea } from "primereact/inputtextarea";
 import axios from "axios";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Dialog } from "primereact/dialog";
 // import { Media } from "react-bootstrap/Media"
 // import ProjectsTable from "./Tables/ProjectsTable";
@@ -20,12 +20,12 @@ const TableDemo = () => {
     const [project_name, setProjectName] = useState("");
     const [description, setDescription] = useState("");
     const [projects, setProjects] = useState([]);
-    const history = useHistory();
+    // const history = useHistory();
 
-    const projectsToShow = projects.map((project) => {
+    const projectsToShow = projects.map(project => {
         return {
             ...project,
-            project_name: <Link to={`/projects/${project.id}`}>{project.project_name}</Link>,
+            project_name: <Link to={`/projects/${project.project_id}`}>{project.project_name}</Link>,
         };
     });
 
@@ -46,7 +46,7 @@ const TableDemo = () => {
             project_name: project_name,
             description: description,
         });
-        history.push("/");
+        // history.push("/");
     };
 
     const dialogFuncMap = {
@@ -83,7 +83,7 @@ const TableDemo = () => {
                             <Button className="p-button-rounded mr-2 mb-2 npbutton" label="New Ticket" onClick={() => onClick("displayResponsive")} />
                         </div>
                         <Dialog className="dialogModal" header="Create Ticket" visible={displayResponsive} onHide={() => onHide("displayResponsive")} breakpoints={{ "960px": "75vw" }} style={{ width: "35vw" }} footer={renderFooter("displayResponsive")}>
-                            <form onSubmit={saveProject}>
+                            <form>
                                 <h5>Project Name</h5>
                                 <InputText value={project_name} onChange={(e) => setProjectName(e.target.value)} type="text" placeholder="Enter project name"></InputText>
                                 <h5>Project Description</h5>
@@ -115,7 +115,7 @@ const TableDemo = () => {
                                 <Column field="createdAt" header="Created On" style={{ minWidth: "150px" }}></Column>
 
                                 {projects.map((project, index) => (
-                                    <tr key={project.id}>
+                                    <tr key={project.project_id}>
                                         <td>{index + 1}</td>
                                         <td>{project.description}</td>
                                         <td>{project.createdAt}</td>
